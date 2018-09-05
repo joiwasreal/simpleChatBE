@@ -1,5 +1,4 @@
 {
-  "name": "up",
   "description": "Dummy back-end for Uldis' chat app to help him become a Front-end developer",
   "repository": "https://github.com/bulyshko/up",
   "image": "heroku/nodejs",
