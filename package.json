@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "name": "up",
+  "version": "1.0.0",
+  "description": "Dummy back-end for Uldis' chat app to help him become a Front-end developer",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon --watch src --exec 'node --require dotenv/config' src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bulyshko/up.git"
+  },
+  "author": "Romuald Bulyshko <opensource@bulyshko.com> (https://bulyshko.com)",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "2.5.2",
+    "koa-router": "7.4.0"
+  },
+  "devDependencies": {
+    "dotenv": "6.0.0",
+    "nodemon": "1.18.4"
+  }
+}
