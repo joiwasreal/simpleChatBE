@@ -15,8 +15,10 @@
   "author": "Romuald Bulyshko <opensource@bulyshko.com> (https://bulyshko.com)",
   "license": "MIT",
   "dependencies": {
+    "joi": "13.6.0",
     "knex": "0.15.2",
     "koa": "2.5.2",
+    "koa-body": "4.0.4",
     "koa-router": "7.4.0",
     "pg": "7.4.3"
   },
