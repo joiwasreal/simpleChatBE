@@ -1,4 +1,4 @@
-const {STATUS_CODES} = require('http')
+const { STATUS_CODES } = require('http')
 
 module.exports = async (ctx, next) => {
   try {
@@ -12,12 +12,12 @@ module.exports = async (ctx, next) => {
 
     const code = ctx.status = typeof err.status === 'number' ? err.status : 500
     ctx.type = 'application/json'
-    ctx.body = {status: 'error', code}
+    ctx.body = { status: 'error', code }
 
     if (ctx.app.env === 'development') {
-      ctx.body = {...ctx.body, message: err.message, stack: err.stack}
+      ctx.body = { ...ctx.body, message: err.message, stack: err.stack }
     } else {
-      ctx.body = {...ctx.body, message: err.expose ? err.message : STATUS_CODES[code]}
+      ctx.body = { ...ctx.body, message: err.expose ? err.message : STATUS_CODES[code] }
     }
   }
 }

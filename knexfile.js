@@ -1,4 +1,4 @@
-const {DATABASE_URL} = process.env
+const { DATABASE_URL } = process.env
 module.exports = {
   development: {
     client: 'sqlite3',

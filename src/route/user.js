@@ -1,5 +1,5 @@
 const Router = require('koa-router')
-const router = new Router({prefix: '/users'})
+const router = new Router({ prefix: '/users' })
 const body = require('koa-body')
 const validate = require('../middleware/validate')
 const knex = require('../db')
@@ -14,7 +14,7 @@ router.get('/', async ctx => {
 
 router.post('/', body(), validate(require('../model/user')), async ctx => {
   const user = ctx.request.body
-  const {username} = user
+  const { username } = user
 
   const id = await knex('users').where({
     username: username
@@ -29,7 +29,7 @@ router.post('/', body(), validate(require('../model/user')), async ctx => {
   ctx.status = 201
   ctx.body = {
     status: 'success',
-    data: {...user, id: result}
+    data: { ...user, id: result }
   }
 })
 
@@ -49,7 +49,7 @@ router.get('/:id', async ctx => {
 })
 
 router.delete('/:id', async ctx => {
-  await knex('users').where({id: ctx.params.id}).delete()
+  await knex('users').where({ id: ctx.params.id }).delete()
 
   ctx.status = 204
 })

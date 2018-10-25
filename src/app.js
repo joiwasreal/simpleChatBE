@@ -1,6 +1,6 @@
 const Koa = require('koa')
 
-const {PORT = 3000} = process.env
+const { PORT = 3000 } = process.env
 
 const app = new Koa()
 
