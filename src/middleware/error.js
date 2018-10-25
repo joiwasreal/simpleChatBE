@@ -10,6 +10,10 @@ module.exports = async (ctx, next) => {
   } catch (err) {
     ctx.app.emit('error', err, ctx)
 
+    if (err.status === 401) {
+      return
+    }
+
     const code = ctx.status = typeof err.status === 'number' ? err.status : 500
     ctx.type = 'application/json'
     ctx.body = { status: 'error', code }
