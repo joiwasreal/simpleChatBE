@@ -58,11 +58,12 @@ router.get('/:id', async ctx => {
 })
 
 router.delete('/:id', auth(), async ctx => {
-  if (`${ctx.params.id}` !== `${ctx.user.id}`) {
+  const id = ctx.params.id
+  if (`${id}` !== `${ctx.user.id}`) {
     return ctx.throw(403)
   }
 
-  await knex('users').where({ id: ctx.params.id }).delete()
+  await knex('users').where({ id }).delete()
 
   ctx.status = 204
 })
