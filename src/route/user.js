@@ -1,6 +1,7 @@
 const Router = require('koa-router')
 const router = new Router({ prefix: '/users' })
 const body = require('koa-body')
+const auth = require('../middleware/auth')
 const validate = require('../middleware/validate')
 const knex = require('../db')
 
@@ -16,10 +17,7 @@ router.post('/', body(), validate(require('../model/user')), async ctx => {
   const user = ctx.request.body
   const { username } = user
 
-  const id = await knex('users').where({
-    username: username
-  }).first('id')
-
+  const id = await knex('users').where({ username }).first('id')
   if (id !== undefined) {
     return ctx.throw(400, 'username already taken')
   }
@@ -31,6 +29,17 @@ router.post('/', body(), validate(require('../model/user')), async ctx => {
     status: 'success',
     data: { ...user, id: result }
   }
+})
+
+router.put('/:id', auth(), body(), validate(require('../model/name')), async ctx => {
+  const id = ctx.params.id
+  if (`${id}` !== `${ctx.user.id}`) {
+    return ctx.throw(403)
+  }
+
+  await knex('users').where({ id }).update(ctx.request.body)
+
+  ctx.status = 204
 })
 
 router.get('/:id', async ctx => {
@@ -48,7 +57,11 @@ router.get('/:id', async ctx => {
   }
 })
 
-router.delete('/:id', async ctx => {
+router.delete('/:id', auth(), async ctx => {
+  if (`${ctx.params.id}` !== `${ctx.user.id}`) {
+    return ctx.throw(403)
+  }
+
   await knex('users').where({ id: ctx.params.id }).delete()
 
   ctx.status = 204

@@ -1,7 +1,7 @@
 const credentials = require('./credentials')
-const Joi = require('joi')
+const name = require('./name')
 
 module.exports = {
   ...credentials,
-  name: Joi.string().max(100)
+  ...name
 }
