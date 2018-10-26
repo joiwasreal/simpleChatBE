@@ -10,7 +10,12 @@ module.exports = async (ctx, next) => {
   } catch (err) {
     ctx.app.emit('error', err, ctx)
 
+    if (err.headers) {
+      ctx.set(err.headers)
+    }
+
     if (err.status === 401) {
+      ctx.status = err.status
       return
     }
 
