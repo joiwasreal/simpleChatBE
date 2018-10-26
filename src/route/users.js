@@ -32,15 +32,15 @@ router.post('/', body(), validate(require('../model/user')), async ctx => {
   }
 })
 
-router.put('/:id', auth(), self(), body(), validate(require('../model/name')), async ctx => {
-  await knex('users').where({ id: ctx.params.id }).update(ctx.request.body)
+router.put('/:userId', auth(), self(), body(), validate(require('../model/name')), async ctx => {
+  await knex('users').where({ id: ctx.params.userId }).update(ctx.request.body)
 
   ctx.status = 204
 })
 
-router.get('/:id', async ctx => {
+router.get('/:userId', async ctx => {
   const data = await knex('users').where({
-    id: ctx.params.id
+    id: ctx.params.userId
   }).first('id', 'username', 'name')
 
   if (data === undefined) {
@@ -53,12 +53,12 @@ router.get('/:id', async ctx => {
   }
 })
 
-router.delete('/:id', auth(), self(), async ctx => {
-  await knex('users').where({ id: ctx.params.id }).delete()
+router.delete('/:userId', auth(), self(), async ctx => {
+  await knex('users').where({ id: ctx.params.userId }).delete()
 
   ctx.status = 204
 })
 
-router.use('/:id', require('./contact').routes())
+router.use('/:userId', auth(), self(), require('./contacts').routes())
 
 module.exports = router
