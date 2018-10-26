@@ -4,5 +4,10 @@ node_js:
 env:
   global:
   - NODE_ENV=test
+services:
+- postgresql
+before_script:
+- psql -c 'CREATE DATABASE up;' -U postgres
+- $(npm bin)/knex migrate:latest
 script:
 - npm test

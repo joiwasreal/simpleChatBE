@@ -7,6 +7,13 @@ module.exports = {
     },
     useNullAsDefault: true
   },
+  test: {
+    client: 'postgres',
+    connection: {
+      user: 'postgres',
+      database: 'up'
+    }
+  },
   production: {
     client: 'postgres',
     connection: DATABASE_URL
