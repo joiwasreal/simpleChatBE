@@ -1,7 +1,7 @@
 exports.seed = async knex => {
-  const users = {};
+  const users = {}
   for (let user of await knex('users').select('id', 'username')) {
-    users[user.username] = user.id;
+    users[user.username] = user.id
   }
   await knex('contacts').insert([
     {
