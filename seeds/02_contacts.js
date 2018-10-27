@@ -3,7 +3,6 @@ exports.seed = async knex => {
   for (let user of await knex('users').select('id', 'username')) {
     users[user.username] = user.id;
   }
-  await knex('contacts').truncate()
   await knex('contacts').insert([
     {
       user_id: users.bulyshko,
