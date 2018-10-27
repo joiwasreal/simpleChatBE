@@ -9,5 +9,6 @@ services:
 before_script:
 - psql -c 'CREATE DATABASE up;' -U postgres
 - $(npm bin)/knex migrate:latest
+- $(npm bin)/knex seed:run
 script:
 - npm test
