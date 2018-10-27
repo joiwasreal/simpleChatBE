@@ -4,12 +4,37 @@ exports.seed = async knex => {
     {
       name: 'Romuald Bulyshko',
       username: 'bulyshko',
-      password: 'qwerty'
+      password: 'romuald'
     },
     {
       name: 'Uldis Plotins',
       username: 'uldis',
-      password: 'qwerty'
+      password: 'plotins'
+    },
+    {
+      name: 'Steve Jobs',
+      username: 'steve',
+      password: 'jobs'
+    },
+    {
+      name: 'Jeff Bezos',
+      username: 'jeff',
+      password: 'bezos'
+    },
+    {
+      name: 'Bill Gates',
+      username: 'bill',
+      password: 'gates'
+    },
+    {
+      name: 'Larry Page',
+      username: 'larry',
+      password: 'page'
+    },
+    {
+      name: 'Sergey Brin',
+      username: 'sergey',
+      password: 'brin'
     }
   ])
 }
