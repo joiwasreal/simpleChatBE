@@ -14,11 +14,6 @@ module.exports = async (ctx, next) => {
       ctx.set(err.headers)
     }
 
-    if (err.status === 401) {
-      ctx.status = err.status
-      return
-    }
-
     const code = ctx.status = typeof err.status === 'number' ? err.status : 500
     ctx.type = 'application/json'
     ctx.body = { status: 'error', code }
