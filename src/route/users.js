@@ -6,7 +6,7 @@ const self = require('../middleware/self')
 const validate = require('../middleware/validate')
 const knex = require('../db')
 
-router.get('/', async ctx => {
+router.get('/', auth(), async ctx => {
   const data = await knex('users').select('id', 'username', 'name').orderBy('id')
   ctx.body = {
     status: 'success',
@@ -38,7 +38,7 @@ router.put('/:userId', auth(), self(), body(), validate(require('../model/name')
   ctx.status = 204
 })
 
-router.get('/:userId', async ctx => {
+router.get('/:userId', auth(), async ctx => {
   const data = await knex('users').where({
     id: ctx.params.userId
   }).first('id', 'username', 'name')
