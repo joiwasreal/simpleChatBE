@@ -1,2 +1,6 @@
+const { Model } = require('objection')
+const Knex = require('knex')
 const { NODE_ENV = 'development' } = process.env
-module.exports = require('knex')(require('../knexfile')[NODE_ENV])
+const knex = Knex(require('../knexfile')[NODE_ENV])
+Model.knex(knex)
+module.exports = knex
