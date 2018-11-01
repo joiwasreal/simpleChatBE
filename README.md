@@ -16,5 +16,5 @@ The source code is licensed under the [MIT License][license].
 [deploy]:https://heroku.com/deploy
 [travis]:https://travis-ci.org/bulyshko/up
 [build]:https://travis-ci.org/bulyshko/up.svg?branch=master
-[codestyle]:https://img.shields.io/badge/code_style-standard-brightgreen.svg
+[codestyle]:https://img.shields.io/badge/code_style-standard-f7df1e.svg?longCache=true
 [standard]:https://standardjs.com
