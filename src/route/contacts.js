@@ -16,7 +16,7 @@ router.get('/', async ctx => {
   }
 })
 
-router.post('/', body(), validate(require('../model/id')), async ctx => {
+router.post('/', body(), validate(require('../schema/id')), async ctx => {
   await knex('contacts').insert({
     user_id: ctx.params.userId,
     contact_id: ctx.request.body.id

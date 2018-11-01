@@ -1,9 +1,10 @@
-const Joi = require('joi')
+const Ajv = require('ajv')
+const ajv = new Ajv({ allErrors: true })
 
 module.exports = schema => (ctx, next) => {
-  const { error } = Joi.validate(ctx.request.body, schema, { convert: false })
-  if (error === null) {
+  const valid = ajv.validate(schema, ctx.request.body)
+  if (valid) {
     return next()
   }
-  ctx.throw(400, error.message)
+  ctx.throw(400, ajv.errorsText())
 }

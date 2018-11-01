@@ -14,7 +14,7 @@ router.get('/', auth(), async ctx => {
   }
 })
 
-router.post('/', body(), validate(require('../model/user')), async ctx => {
+router.post('/', body(), validate(require('../schema/user')), async ctx => {
   const user = ctx.request.body
   const { username } = user
 
@@ -32,7 +32,7 @@ router.post('/', body(), validate(require('../model/user')), async ctx => {
   }
 })
 
-router.put('/:userId', auth(), self(), body(), validate(require('../model/name')), async ctx => {
+router.put('/:userId', auth(), self(), body(), validate(require('../schema/name')), async ctx => {
   await knex('users').where({ id: ctx.params.userId }).update(ctx.request.body)
 
   ctx.status = 204
