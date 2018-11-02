@@ -1,6 +1,6 @@
 module.exports = {
   type: 'object',
   properties: {
-    name: { type: 'string', maxLength: 10 }
+    name: { type: 'string', maxLength: 100 }
   }
 }
