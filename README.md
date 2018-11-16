@@ -3,7 +3,7 @@
 [![Build Status][build]][travis]
 [![JavaScript Style Guide][codestyle]][standard]
 
-Dummy back-end for Uldis' chat app to help him become a Front-end developer.
+Dummy back-end for a chat app to help my mentee improve his Front-end development skills.
 
 [![Deploy][deploy.button]][deploy]
 

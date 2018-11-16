@@ -2,7 +2,7 @@
   "private": true,
   "name": "up",
   "version": "1.0.0",
-  "description": "Dummy back-end for Uldis' chat app to help him become a Front-end developer",
+  "description": "Dummy back-end for a chat app to help my mentee improve his Front-end development skills",
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
