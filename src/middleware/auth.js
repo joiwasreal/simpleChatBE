@@ -19,7 +19,7 @@ module.exports = () => async (ctx, next) => {
     return ctx.throw(401, null, { headers })
   }
 
-  ctx.user = user
+  ctx.user = { ...user, password: undefined }
 
   return next()
 }
