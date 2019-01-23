@@ -15,6 +15,7 @@ app.on('error', err => console.error(err.message))
 
 app.use(require('./route/users').routes())
 app.use(require('./route/me').routes())
+app.use(require('./route/ping').routes())
 app.use(require('./route/index').routes())
 
 module.exports = app.listen(PORT)

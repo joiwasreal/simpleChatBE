@@ -7,7 +7,7 @@ const validate = require('../middleware/validate')
 const knex = require('../db')
 
 router.get('/', auth(), async ctx => {
-  const data = await knex('users').select('id', 'username', 'name').orderBy('id')
+  const data = await knex('users').select('id', 'username', 'name', 'seen_at', 'created_at').orderBy('id')
   ctx.body = {
     status: 'success',
     data
@@ -41,7 +41,7 @@ router.put('/:userId', auth(), self(), body(), validate(require('../schema/name'
 router.get('/:userId', auth(), async ctx => {
   const data = await knex('users').where({
     id: ctx.params.userId
-  }).first('id', 'username', 'name')
+  }).first('id', 'username', 'name', 'seen_at')
 
   if (data === undefined) {
     return ctx.throw(404)
