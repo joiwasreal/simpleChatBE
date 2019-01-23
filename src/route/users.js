@@ -60,5 +60,6 @@ router.delete('/:userId', auth(), self(), async ctx => {
 })
 
 router.use('/:userId', auth(), self(), require('./contacts').routes())
+router.use('/:userId', auth(), self(), require('./chats').routes())
 
 module.exports = router
