@@ -5,8 +5,9 @@ const knex = require('../db')
 router.get('/', async ctx => {
   const data = await knex('messages').where({
     recipient_id: ctx.params.userId
-  }).select('sender_id AS user_id', ('MAX(created_at)'))  
-    .groupBy('sender_id')    
+  }).select('sender_id AS user_id', 'created_at'))
+    .max('created_at')
+    .groupBy('sender_id')
     .orderBy('id', 'desc')
 
   ctx.body = {
