@@ -9,10 +9,7 @@ router.get('/', async ctx => {
     .groupBy('sender_id')
     .orderBy('id', 'desc')
 
-  ctx.body = {
-    status: 'success',
-    data
-  }
+  ctx.body = { data }
 })
 
 module.exports = router

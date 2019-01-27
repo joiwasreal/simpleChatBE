@@ -4,7 +4,6 @@ const auth = require('../middleware/auth')
 
 router.get('/', auth(), async ctx => {
   ctx.body = {
-    status: 'success',
     data: ctx.user
   }
 })

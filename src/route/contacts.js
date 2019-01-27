@@ -10,10 +10,7 @@ router.get('/', async ctx => {
     .join('users', 'users.id', '=', 'contacts.contact_id')
     .select('users.id', 'users.username', 'users.name')
 
-  ctx.body = {
-    status: 'success',
-    data
-  }
+  ctx.body = { data }
 })
 
 router.post('/', body(), validate(require('../schema/id')), async ctx => {
@@ -21,10 +18,8 @@ router.post('/', body(), validate(require('../schema/id')), async ctx => {
     user_id: ctx.params.userId,
     contact_id: ctx.request.body.id
   })
-  ctx.status = 201
-  ctx.body = {
-    status: 'success'
-  }
+
+  ctx.status = 204
 })
 
 router.delete('/:contactId', async ctx => {
