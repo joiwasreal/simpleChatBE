@@ -15,13 +15,15 @@ module.exports = async (ctx, next) => {
     }
 
     const code = ctx.status = typeof err.status === 'number' ? err.status : 500
-    ctx.type = 'application/json'
-    ctx.body = { status: 'error', code }
-
-    if (ctx.app.env === 'development') {
-      ctx.body = { ...ctx.body, message: err.message, stack: err.stack }
-    } else {
-      ctx.body = { ...ctx.body, message: err.expose ? err.message : STATUS_CODES[code] }
+    ctx.type = 'application/vnd.api+json'
+    ctx.body = {
+      errors: [
+        {
+          status: '' + code,
+          title: err.expose ? err.message : STATUS_CODES[code],
+          detail: ctx.app.env === 'development' ? err.stack : undefined
+        }
+      ]
     }
   }
 }
