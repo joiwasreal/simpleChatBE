@@ -8,7 +8,7 @@ router.get('/', async ctx => {
   }).select('sender_id AS user_id')    
     .max('created_at AS created_at')
     .groupBy('sender_id')
-    .orderBy('created_at', 'desc')
+    .orderBy('sender_id', 'asc')
 
   ctx.body = {
     status: 'success',
