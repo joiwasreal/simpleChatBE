@@ -3,11 +3,14 @@ const router = new Router({ prefix: '/chats' })
 const knex = require('../db')
 
 router.get('/', async ctx => {
-  const data = await knex('messages').where({
+  const subquery = knex('messages').where({
+    sender_id: knex.raw('??', ['users.id']),
     recipient_id: ctx.params.userId
-  }).select('sender_id AS user_id', 'created_at')
-    .groupBy('sender_id')
-    .orderBy('id', 'desc')
+  }).select('created_at')
+    .orderBy('created_at', 'DESC')
+    .limit(1)
+    .as('created_at')
+  const data = await knex('users').select('id AS user_id', subquery)
 
   ctx.body = { data }
 })
