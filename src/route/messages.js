@@ -17,10 +17,7 @@ router.get('/', async ctx => {
     .orderBy('id', 'desc')
     .limit(100)
 
-  ctx.body = {
-    status: 'success',
-    data
-  }
+  ctx.body = { data }
 })
 
 router.post('/', body(), validate(require('../schema/message')), async ctx => {
@@ -35,7 +32,6 @@ router.post('/', body(), validate(require('../schema/message')), async ctx => {
 
   ctx.status = 201
   ctx.body = {
-    status: 'success',
     data: { ...message, id: result }
   }
 })

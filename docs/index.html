@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>UP</title>
+</head>
+<body>
+
+<noscript>
+  <p>You need to enable JavaScript to run this app.</p>
+</noscript>
+
+<div id="app">
+  <router-view></router-view>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-router"></script>
+<script>
+  const SingIn = Vue.component('sign-in', {
+    template: `<div>
+<h1>Sign in</h1>
+<form v-on:submit="submit(event)">
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" v-model="username">
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" v-model="password">
+  </div>
+  <div>
+    <button type="submit">Sign in</button>
+  </div>
+</form>
+</div>`,
+    methods: {
+      submit: function (event) {
+        event.preventDefault()
+        fetch('https://upend.herokuapp.com/me', {
+          headers: {
+            Authorization: `Basic ${btoa(`${this.username}:${this.password}`)}`
+          }
+        }).then(resp => resp.json()).then(resp => {
+          if (resp.hasOwnProperty('errors')) {
+            console.error(resp.errors[0].title)
+          } else {
+            console.log(resp.data)
+          }
+        })
+      }
+    },
+    data: function () {
+      return {
+        username: '',
+        password: ''
+      }
+    }
+  })
+
+  const app = new Vue({
+    router: new VueRouter({
+      routes: [
+        {
+          path: '/',
+          component: SingIn
+        }
+      ]
+    })
+  }).$mount('#app')
+</script>
+
+</body>
+</html>

@@ -5,7 +5,7 @@ exports.up = async knex => {
 }
 
 exports.down = async knex => {
-  await knex.schema.table('users', table => {
+  await knex.schema.alterTable('users', table => {
     table.dropColumn('seen_at')
   })
 }

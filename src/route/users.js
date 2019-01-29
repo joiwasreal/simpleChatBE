@@ -8,10 +8,7 @@ const knex = require('../db')
 
 router.get('/', auth(), async ctx => {
   const data = await knex('users').select('id', 'username', 'name', 'seen_at').orderBy('id')
-  ctx.body = {
-    status: 'success',
-    data
-  }
+  ctx.body = { data }
 })
 
 router.post('/', body(), validate(require('../schema/user')), async ctx => {
@@ -27,7 +24,6 @@ router.post('/', body(), validate(require('../schema/user')), async ctx => {
 
   ctx.status = 201
   ctx.body = {
-    status: 'success',
     data: { ...user, id: result }
   }
 })
@@ -47,10 +43,7 @@ router.get('/:userId', auth(), async ctx => {
     return ctx.throw(404)
   }
 
-  ctx.body = {
-    status: 'success',
-    data
-  }
+  ctx.body = { data }
 })
 
 router.delete('/:userId', auth(), self(), async ctx => {

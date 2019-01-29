@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "UP",
+    "description": "Dummy back-end for a chat app to help my mentee improve his Front-end development skills.",
+    "version": "1.0.0",
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/bulyshko/up/blob/master/LICENSE"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://upend.herokuapp.com"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "post": {
+        "summary": "Creates a user.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "https://bulyshko.github.io/up/schemas/user.json#"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created."
+          }
+        }
+      }
+    }
+  }
+}
